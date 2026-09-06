@@ -10,12 +10,16 @@ function defaultTimes(count) {
 export default function DropForm({ existing, onSave, onCancel, onDelete }) {
   const [name, setName] = useState(existing?.name || '')
   const [timesPerDay, setTimesPerDay] = useState(existing?.timesPerDay || 1)
+  const [timesPerDayInput, setTimesPerDayInput] = useState(String(existing?.timesPerDay || 1))
   const [times, setTimes] = useState(existing?.times || defaultTimes(existing?.timesPerDay || 1))
   const [note, setNote] = useState(existing?.note || '')
   const [error, setError] = useState('')
 
   function handleTimesPerDayChange(value) {
-    const n = Math.max(1, Math.min(10, parseInt(value, 10) || 1))
+  setTimesPerDayInput(value) // let the field show exactly what's typed, even mid-edit
+
+  const n = parseInt(value, 10)
+  if (!isNaN(n) && n >= 1 && n <= 10) {
     setTimesPerDay(n)
     setTimes((prev) => {
       const next = prev.slice(0, n)
@@ -23,6 +27,18 @@ export default function DropForm({ existing, onSave, onCancel, onDelete }) {
       return next
     })
   }
+}
+
+function handleTimesPerDayBlur() {
+  const n = Math.max(1, Math.min(10, parseInt(timesPerDayInput, 10) || 1))
+  setTimesPerDayInput(String(n))
+  setTimesPerDay(n)
+  setTimes((prev) => {
+    const next = prev.slice(0, n)
+    while (next.length < n) next.push('')
+    return next
+  })
+}
 
   function handleTimeChange(index, value) {
     setTimes((prev) => {
@@ -75,7 +91,8 @@ export default function DropForm({ existing, onSave, onCancel, onDelete }) {
             type="number"
             min="1"
             max="10"
-            value={timesPerDay}
+            value={timesPerDayInput}
+            onBlur={handleTimesPerDayBlur}
             onChange={(e) => handleTimesPerDayChange(e.target.value)}
           />
         </div>
