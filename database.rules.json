@@ -1,0 +1,36 @@
+{
+  "rules": {
+    "drops": {
+      ".read": true,
+      ".write": true,
+      "$dropId": {
+        ".validate": "newData.hasChildren(['name', 'timesPerDay', 'times'])",
+        "name": {
+          ".validate": "newData.isString() && newData.val().length > 0 && newData.val().length < 100"
+        },
+        "timesPerDay": {
+          ".validate": "newData.isNumber() && newData.val() > 0 && newData.val() <= 10"
+        },
+        "times": {
+          ".validate": "newData.hasChildren()"
+        },
+        "note": {
+          ".validate": "newData.isString() && newData.val().length < 300"
+        },
+        "$other": {
+          ".validate": false
+        }
+      }
+    },
+
+    "confirmations": {
+      ".read": true,
+      ".write": true,
+      "$date": {
+        "$doseKey": {
+          ".validate": "newData.isString()"
+        }
+      }
+    }
+  }
+}
