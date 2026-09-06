@@ -12,11 +12,11 @@
 // the console and copy the URL shown at the top of the Data tab.)
 
 export const firebaseConfig = {
-  apiKey: 'PASTE_YOUR_API_KEY',
-  authDomain: 'PASTE_YOUR_PROJECT.firebaseapp.com',
-  databaseURL: 'https://PASTE_YOUR_PROJECT-default-rtdb.firebaseio.com',
-  projectId: 'PASTE_YOUR_PROJECT',
-  storageBucket: 'PASTE_YOUR_PROJECT.appspot.com',
-  messagingSenderId: 'PASTE_YOUR_SENDER_ID',
-  appId: 'PASTE_YOUR_APP_ID'
+  apiKey: 'AIzaSyAqwUE3cpg_j-45qsMtw1uA5BVH9MiR12M',
+  authDomain: 'eyedrop-001.firebaseapp.com',
+  databaseURL: 'https://eyedrop-001-default-rtdb.asia-southeast1.firebasedatabase.app/',
+  projectId: 'eyedrop-001',
+  storageBucket: 'eyedrop-001.appspot.com',
+  messagingSenderId: '506541388014',
+  appId: '1:506541388014:web:fb463bae2a6eedf103c3ff'
 }
